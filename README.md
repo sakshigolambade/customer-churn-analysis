@@ -1,80 +1,76 @@
-# 📊 Customer Churn Analysis
+# 📊 Customer Churn Analysis Dashboard
 
-A complete end-to-end **Customer Churn Prediction and Business Insights Project** using Python, SQL, and Power BI.
+An end-to-end customer churn analysis project for a telecom business — covering data cleaning in Python, exploratory analysis in SQL, and an interactive Power BI dashboard with a rule-based churn risk scoring system.
+
+![Summary Page](images/summary_page.png)
+
+---
+## 🚨 Business Problem
+Telecom companies lose significant revenue every year to customer churn. This project analyzes a dataset of **6,418 customers** to answer three core business questions:
+
+1. **What does churn look like today?** — Who is churning, from where, and why?
+2. **What factors drive churn?** — Contract type, tenure, internet service, demographics.
+3. **Who is likely to churn next?** — Score active customers by churn risk so retention teams can act before they leave, not after.
+---
+## 🧰 Tech Stack
+| Stage | Tools |
+|---|---|
+| Data Cleaning & Preparation | 🐍Python (Pandas, NumPy) |
+| Database & Querying | 🗄️MySQL |
+| Visualization & Risk Scoring | 📊Power BI (DAX) |
+---
+## 🔄 Project Workflow
+### 1️⃣ Data Cleaning & Preparation (Python)
+- Loaded raw dataset (6,418 rows × 32 columns) and inspected structure, nulls, and data types
+- Handled missing values contextually rather than dropping rows:
+  - `Value_Deal` → filled with `"No Deal"`
+  - `Multiple_Lines` → filled with `"No Phone Service"`
+  - Internet-dependent fields (`Internet_Type`, `Online_Security`, `Streaming_TV`, etc.) → filled with `"No Internet Service"`
+  - `Churn_Category` / `Churn_Reason` → filled with `"Not Applicable"` for non-churned customers
+- Corrected data type issues (e.g., normalized `Monthly_Charge` to absolute values)
+- Exported two clean datasets: one full cleaned set for MySQL loading, and one filtered to active/churned customers (excluding new joins) for the Power BI prediction model
+- 📓 Notebook: [`python/CustomerChurn.ipynb`](python/CustomerChurn.ipynb)
+
+### 2️⃣ Database & Querying (SQL)
+- Loaded cleaned data into a MySQL staging table, then built a production table (`prod_Churn`)
+- Wrote analytical queries covering:
+  - Overall churn rate and customer status distribution
+  - Churn breakdown by contract type and internet type
+  - Top churn reasons ranked by frequency
+  - Average tenure comparison between churned and retained customers
+- Used window functions (`SUM() OVER()`) for percentage-of-total calculations
+- 🗄️ Script: [`sql/cust_churn_sql.sql`](sql/cust_churn_sql.sql)
+
+### 3️⃣ Visualization & Risk Scoring (Power BI)
+Built a 3-page interactive dashboard on a unified dark navy theme:
+
+**Page 1 — Summary**
+High-level KPIs (Total Customers, Churn Rate, Revenue Lost, New Joiners), churn breakdown by state, contract type, internet type, and payment method, with interactive slicers for contract, internet type, and gender.
+
+**Page 2 — Churn Analysis**
+Deeper diagnostic view: top churn reasons, churned vs. stayed trends by tenure, a churn-rate heatmap by age group and gender, and a customer status funnel.
+
+**Page 3 — Predictions**
+A DAX-driven risk scoring system that classifies active customers into Low / Medium / High churn risk based on key behavioral and account attributes, surfaced through:
+- Risk distribution and predicted outcome visuals
+- A sortable High-Risk Customer table with conditional formatting
+- Risk breakdown by contract type
+- An interactive risk-level filter and a summarized business recommendation
+---
+## 📈 Key Insights
+- **27% overall churn rate** across 6,418 customers, representing ₹3.41M in lost revenue
+- **Month-to-Month contracts account for the vast majority of churn** (1,529 of 1,732 total churned customers) — customers on longer contracts churn far less
+- **Fiber Optic internet users churn at the highest rate** among internet types (1,136 churned)
+- Churn is **highest among customers aged 60+** and **under 30**, with the 60+ segment showing a 36% churn rate in both genders
+- **62 currently active customers are flagged High Risk**, concentrated in Month-to-Month contracts — the priority segment for retention outreach
+---
+## 🖼️ Dashboard Preview
+| Summary | Churn Analysis | Predictions |
+|---|---|---|
+| ![Summary](images/summary_page.png) | ![Churn Analysis](images/churn_analysis_page.png) | ![Predictions](images/predictions_page.png) |
 
 ---
 
-## 🚨 Problem Statement
-
-Customer churn is one of the most critical challenges in the telecom industry. Losing customers is significantly more expensive than acquiring new ones — often **5 to 7 times costlier**.
-
-This project analyzes a telecom dataset of ~7,000 customers with 21 features to understand:
-- Why customers churn
-- Which segments are high-risk
-- How churn can be reduced using data-driven insights
-
----
-
-## 🧠 Tech Stack
-
-- Python 🐍 (Pandas, NumPy, Scikit-learn)
-- SQL 🗄️ (Business insights extraction)
-- Power BI 📊 (Interactive dashboard) — :contentReference[oaicite:0]{index=0}
-- Excel 📑
-
----
-
-## 📂 Project Workflow
-
-### 1️⃣ Exploratory Data Analysis (EDA)
-- Used `df.info()` and `df.describe()` to understand dataset structure
-- Identified **data quality issues** (TotalCharges stored as object)
-- Detected **class imbalance (26% churn rate)**
-
----
-
-### 2️⃣ Data Cleaning & Preprocessing
-- Converted `TotalCharges` to numeric
-- Handled missing values using median imputation
-- Encoded categorical variables (Label + One-Hot Encoding)
-- Applied **StandardScaler** for feature scaling
-
----
-
-### 3️⃣ SQL-Based Business Insights
-Used SQL queries to analyze:
-- Churn rate by contract type
-- Payment method impact
-- Tenure-based customer segmentation
-
-👉 These insights helped form hypotheses before modeling.
-
----
-
-### 📈 Results:
-- Accuracy: ~80%
-- F1 Score: 0.76
-
----
-
-## 🔍 Key Business Insight
-
-- Month-to-month customers have a churn rate of **~43%**
-- One-year contracts: **~11%**
-- Two-year contracts: **~3%**
-
-👉 This shows a **3x higher risk** in short-term contracts.
-
-High monthly charges + short contracts = 🚨 highest churn risk segment
-
----
-
-## 📊 Power BI Dashboard
-
-Built an interactive dashboard in :contentReference[oaicite:1]{index=1} including:
-
-- Churn breakdown by contract type
-- Tenure vs Monthly Charges analysis
-- KPI cards (Overall churn rate, risk segments)
-
----
+## 📌 Author
+**Sakshi Golambade**
+Data Analyst | Python · SQL · Power BI
