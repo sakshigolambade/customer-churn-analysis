@@ -2,7 +2,7 @@
 
 An end-to-end customer churn analysis project for a telecom business — covering data cleaning in Python, exploratory analysis in SQL, and an interactive Power BI dashboard with a rule-based churn risk scoring system.
 
-![Summary Page](images/summary_page.png)
+![Summary Page](dashboards/dashboard%201.png)
 
 ---
 ## 🚨 Business Problem
@@ -67,7 +67,7 @@ A DAX-driven risk scoring system that classifies active customers into Low / Med
 ## 🖼️ Dashboard Preview
 | Summary | Churn Analysis | Predictions |
 |---|---|---|
-| ![Summary](images/summary_page.png) | ![Churn Analysis](images/churn_analysis_page.png) | ![Predictions](images/predictions_page.png) |
+| ![Summary Page](dashboards/dashboard%201.png) | ![Churn Analysis](dashboards/dashboard%202.png) | ![Predictions](dashboards/dashboard%203.png) |
 
 ---
 
