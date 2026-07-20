@@ -29,7 +29,7 @@ Telecom companies lose significant revenue every year to customer churn. This pr
   - `Churn_Category` / `Churn_Reason` → filled with `"Not Applicable"` for non-churned customers
 - Corrected data type issues (e.g., normalized `Monthly_Charge` to absolute values)
 - Exported two clean datasets: one full cleaned set for MySQL loading, and one filtered to active/churned customers (excluding new joins) for the Power BI prediction model
-- 📓 Notebook: [`python/CustomerChurn.ipynb`](python/CustomerChurn.ipynb)
+- 📓 Notebook: [`python/CustomerChurn.ipynb`](Python_EDA/CustomerChurn.ipynb)
 
 ### 2️⃣ Database & Querying (SQL)
 - Loaded cleaned data into a MySQL staging table, then built a production table (`prod_Churn`)
@@ -39,7 +39,7 @@ Telecom companies lose significant revenue every year to customer churn. This pr
   - Top churn reasons ranked by frequency
   - Average tenure comparison between churned and retained customers
 - Used window functions (`SUM() OVER()`) for percentage-of-total calculations
-- 🗄️ Script: [`sql/cust_churn_sql.sql`](sql/cust_churn_sql.sql)
+- 🗄️ Script: [`sql/cust_churn_sql.sql`](SQl/cust_churn_sql.sql)
 
 ### 3️⃣ Visualization & Risk Scoring (Power BI)
 Built a 3-page interactive dashboard on a unified dark navy theme:
