@@ -39,7 +39,7 @@ Telecom companies lose significant revenue every year to customer churn. This pr
   - Top churn reasons ranked by frequency
   - Average tenure comparison between churned and retained customers
 - Used window functions (`SUM() OVER()`) for percentage-of-total calculations
-- 🗄️ Script: [`sql/cust_churn_sql.sql`](SQl/cust_churn_sql.sql)
+- 🗄️ Script: [`sql/cust_churn_sql.sql`](SQL/cust_churn_sql.sql)
 
 ### 3️⃣ Visualization & Risk Scoring (Power BI)
 Built a 3-page interactive dashboard on a unified dark navy theme:
